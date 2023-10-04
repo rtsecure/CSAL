@@ -197,7 +197,7 @@ struct cs_device *cs_device_new(cs_physaddr_t addr,
  *
  * This is not used with MEM-AP and/or devmemd.
  */
-uint32_t volatile *_cs_get_register_address(struct cs_device *d,
+unsigned int volatile *_cs_get_register_address(struct cs_device *d,
 						unsigned int off)
 {
     assert((off & 3) == 0);	/* For 64-bit registers this check should be stronger */
@@ -437,7 +437,7 @@ int _cs_isset(struct cs_device *d, unsigned int off, uint32_t bits)
     return (_cs_read(d, off) & bits) == bits;
 }
 
-int _cs_wait(struct cs_device *d, unsigned int off, uint32_t bit)
+int _cs_wait(struct cs_device *d, unsigned int off, unsigned int bit)
 {
     int i;
     for (i = 0; i < wait_iterations; ++i) {
